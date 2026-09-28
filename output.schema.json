@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Korean Reviews Bundle public dataset item",
+  "type": "object",
+  "required": [
+    "source", "productId", "productName", "optionName", "reviewId", "rating",
+    "text", "date", "helpfulCount", "hasPhoto", "photoPaths",
+    "isRepurchase", "reviewType", "reviewer", "scrapedAt"
+  ],
+  "properties": {
+    "source": { "enum": ["oliveyoung", "naver_shopping"] },
+    "productId": { "type": "string" },
+    "productName": { "type": ["string", "null"] },
+    "optionName": { "type": ["string", "null"] },
+    "reviewId": { "type": "string" },
+    "rating": { "type": ["number", "null"] },
+    "text": { "type": "string" },
+    "date": { "type": ["string", "null"] },
+    "helpfulCount": { "type": "number" },
+    "hasPhoto": { "type": "boolean" },
+    "photoPaths": { "type": "array", "items": { "type": "string" } },
+    "isRepurchase": { "type": "boolean" },
+    "reviewType": { "type": ["string", "null"] },
+    "reviewer": {
+      "type": "object",
+      "required": ["skinType", "skinTone", "skinTroubles", "isTopReviewer"],
+      "properties": {
+        "skinType": { "type": ["string", "null"] },
+        "skinTone": { "type": ["string", "null"] },
+        "skinTroubles": { "type": "array", "items": { "type": "string" } },
+        "isTopReviewer": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "scrapedAt": { "type": "string" }
+  },
+  "additionalProperties": false
+}
