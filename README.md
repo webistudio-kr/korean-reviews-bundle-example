@@ -16,6 +16,14 @@ Provide an Olive Young goods number or an Olive Young / Naver Smart Store / Nave
 
 The Actor charges **$0.15 per started block of 50 returned reviews per run**. A run returning zero reviews has no event charge. Splitting a batch into multiple partial runs may cost more. The example caps the run's event charge at $0.15; do not automate repeated calls while testing. Platform usage is included in the Actor's event price. You need an Apify account and its API token.
 
+## Olive Young reviews scraper: start with one product
+
+An Olive Young goods number is an `A` followed by 12 digits, such as `A000000223414`. The `productIds` array also accepts a supported Olive Young product URL. Request a small sample first, check the source product and returned review dates, and only then expand the run. `reviewId` is unique within its source/product context, not a universal review key. The export includes rating, text, date, helpful votes when available, photo flags, and optional non-identifying skin-profile fields. It does **not** return reviewer names or download photo files.
+
+## Naver Shopping reviews API: use a product page, not a brand search
+
+For Naver Shopping, use a **Smart Store or Brand Store product URL/ID** in `productIds`. A broad brand keyword is not a supported target and would mix unrelated products. The normalized item schema is the same, but Naver's review-list response lacks helpful-vote counts and skin-profile attributes, so those fields are zero/null/empty. The Actor does not infer a brand-wide review total from one product's returned sample. **Coupang reviews are not supported.**
+
 ## Call it
 
 With Node.js 24 or newer:
